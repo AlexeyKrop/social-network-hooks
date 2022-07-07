@@ -8,21 +8,42 @@ const instance = axios.create({
   }
 })
 export const userAPI = {
-  getUser(currentPageNumber: number = 10, pageSize: number = 10){
+  getUser(currentPageNumber: number = 10, pageSize: number = 10) {
     return instance.get<ResponseUsersType<Array<UserType>>>(`users?page=${currentPageNumber}&count=${pageSize}`)
   },
-  setProfilePageUser(id: string){
+  getProfilePageUser(id: string) {
     return instance.get<ProfileUserType>(`/profile/${id}`)
   },
-  addUser(id: string){
+  addUser(id: string) {
     return instance.post<ResponseUsersType>(`/follow/${id}`)
   },
-  deleteUser(id: string){
+  removeUser(id: string) {
     return instance.delete(`/follow/${id}`)
   }
 }
 
+export const profileAPI = {
+  getProfileUser(id: number) {
+    return instance.get(`profile/${id}`)
+  },
+  getProfileStatus(id: number) {
+    return instance.get(`profile/status`)
+  },
+  updateProfileStatus(status: string){
+    return instance.put(`profile/status`, {status})
+  },
+  updateProfilePhoto(photo: File) {
+    const formData = new FormData();
+    formData.append('image', photo)
+    return instance.put(`profile/photo`, formData, {
+      headers: {
+        'content-type': 'multipart/form-data'
+      }
+    })
+  }
+}
 
+//TYPE
 export type UserType = {
   name: string,
   id: number,
@@ -40,7 +61,8 @@ type ResponseUsersType<D = {}> = {
 }
 type ProfileUserType = {
   aboutMe: string
-  contacts: { facebook: string
+  contacts: {
+    facebook: string
     website: string | null
     vk: string
     twitter: string
