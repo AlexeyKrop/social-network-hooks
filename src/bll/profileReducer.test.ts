@@ -1,14 +1,17 @@
 import {ProfileUserType} from "../api/api";
-import {profileReducer, setUser} from "./profileReducer";
+import {profileReducer, setStatusAC, setUserAC} from "./profileReducer";
 
 type StateTypeProfile = {
   profile: ProfileUserType
+  status: string
 }
 let startState: StateTypeProfile
 beforeEach(() => {
   startState = {
-    profile: {}
+    profile: {},
+    status: 'hello'
   } as StateTypeProfile
+
 })
 test('set user page profile', () => {
   const model = {
@@ -34,6 +37,10 @@ test('set user page profile', () => {
       }
     }
   }
-  const endState = profileReducer(startState, setUser(model.profile))
+  const endState = profileReducer(startState, setUserAC(model.profile))
   expect(endState.profile).toBeDefined()
+})
+test('set status in profile', () => {
+  const endState = profileReducer(startState, setStatusAC('HI'))
+  expect(endState.status).toBe('HI')
 })
