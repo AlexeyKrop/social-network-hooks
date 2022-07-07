@@ -8,13 +8,13 @@ const instance = axios.create({
   }
 })
 export const userAPI = {
-  getUser(currentPageNumber: number, pageSize: number){
+  getUser(currentPageNumber: number = 10, pageSize: number = 10){
     return instance.get<ResponseUsersType<Array<UserType>>>(`users?page=${currentPageNumber}&count=${pageSize}`)
   },
   setProfilePageUser(id: string){
     return instance.get<ProfileUserType>(`/profile/${id}`)
   },
-  addUSer(id: string){
+  addUser(id: string){
     return instance.post<ResponseUsersType>(`/follow/${id}`)
   },
   deleteUser(id: string){
@@ -23,7 +23,7 @@ export const userAPI = {
 }
 
 
-type UserType = {
+export type UserType = {
   name: string,
   id: number,
   photos: {
