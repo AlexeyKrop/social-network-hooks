@@ -1,8 +1,8 @@
-import {getUsersAC, usersReducer} from "./usersReducer";
+import {addUserAC, removeUserAC, setUsersAC, usersReducer} from "./usersReducer";
 import {UserType} from "../api/api";
 
 type StateType = {
-  users:UserType[]
+  users: UserType[]
 }
 
 let startState: StateType
@@ -33,7 +33,7 @@ beforeEach(() => {
       },
       {
         name: 'Hanna',
-        id: 2,
+        id: 3,
         photos: {
           small: null,
           large: null
@@ -45,6 +45,14 @@ beforeEach(() => {
   }
 })
 test('check get users', () => {
-  let endState = usersReducer(startState, getUsersAC(startState.users))
+  let endState = usersReducer(startState, setUsersAC(startState.users))
   expect(endState.users.length).toBe(3)
+})
+test('check add user', () => {
+  let endState = usersReducer(startState, addUserAC(1))
+  expect(endState.users[0].followed).toBe(false)
+})
+test('check remove user', () => {
+  let endState = usersReducer(startState, removeUserAC(1))
+  expect(endState.users.length).toBe(2)
 })
