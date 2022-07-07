@@ -63,7 +63,7 @@ type ResponseUsersType<D = {}> = {
   totalCount: number,
   error: string | null
 }
-type ProfileUserType = {
+export type ProfileUserType = {
   aboutMe: string
   contacts: {
     facebook: string
