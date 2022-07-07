@@ -9,18 +9,20 @@ const instance = axios.create({
 })
 export const userAPI = {
   getUser(currentPageNumber: number, pageSize: number){
-    return instance.get(`users?page=${currentPageNumber}&count=${pageSize}`)
+    return instance.get<ResponseUsersType<Array<UserType>>>(`users?page=${currentPageNumber}&count=${pageSize}`)
   },
   setProfilePageUser(id: string){
-    return instance.get(`/profile/${id}`)
+    return instance.get<ProfileUserType>(`/profile/${id}`)
   },
   addUSer(id: string){
-    return instance.post(`/follow/${id}`)
+    return instance.post<ResponseUsersType>(`/follow/${id}`)
   },
-  deleteUSer(id: string){
+  deleteUser(id: string){
     return instance.delete(`/follow/${id}`)
   }
 }
+
+
 type UserType = {
   name: string,
   id: number,
@@ -31,8 +33,8 @@ type UserType = {
   status: string | null,
   followed: boolean
 }
-type ResponseUsersType = {
-  items: Array<UserType>
+type ResponseUsersType<D = {}> = {
+  items: D
   totalCount: number,
   error: string | null
 }
