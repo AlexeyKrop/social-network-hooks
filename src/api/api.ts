@@ -24,10 +24,10 @@ export const userAPI = {
 
 export const profileAPI = {
   getUser(id: number) {
-    return instance.get(`profile/${id}`)
+    return instance.get<ProfileUserType>(`profile/${id}`)
   },
   getStatus(id: number) {
-    return instance.get(`profile/status/${id}`)
+    return instance.get<string>(`profile/status/${id}`)
   },
   updateStatus(status: string){
     return instance.put(`profile/status`, {status})
@@ -42,7 +42,7 @@ export const profileAPI = {
     })
   },
   updateProfile(model: ProfileUserType){
-    return instance.put(`profile`, model)
+    return instance.put<ProfileUserType>(`profile`, model)
   }
 
 }
