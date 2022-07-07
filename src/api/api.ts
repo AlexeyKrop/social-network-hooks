@@ -23,16 +23,16 @@ export const userAPI = {
 }
 
 export const profileAPI = {
-  getProfileUser(id: number) {
+  getUser(id: number) {
     return instance.get(`profile/${id}`)
   },
-  getProfileStatus(id: number) {
+  getStatus(id: number) {
     return instance.get(`profile/status`)
   },
-  updateProfileStatus(status: string){
+  updateStatus(status: string){
     return instance.put(`profile/status`, {status})
   },
-  updateProfilePhoto(photo: File) {
+  updatePhoto(photo: File) {
     const formData = new FormData();
     formData.append('image', photo)
     return instance.put(`profile/photo`, formData, {
@@ -40,7 +40,11 @@ export const profileAPI = {
         'content-type': 'multipart/form-data'
       }
     })
+  },
+  updateProfile(model: ProfileUserType){
+    return instance.put(`profile`, model)
   }
+
 }
 
 //TYPE
