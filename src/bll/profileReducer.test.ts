@@ -40,10 +40,12 @@ test('set user page profile', () => {
   const endState = profileReducer(startState, setUserAC(model.profile))
   expect(endState.profile).toBeDefined()
 })
+
 test('set status in profile', () => {
   const endState = profileReducer(startState, setStatusAC('HI'))
   expect(endState.status).toBe('HI')
 })
+
 test('update profile', () => {
   const model = {
     profile: {
