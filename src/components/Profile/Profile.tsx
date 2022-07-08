@@ -2,7 +2,7 @@ import {Box} from "@mui/material";
 import {Link} from "react-router-dom";
 import s from './Profile.module.css'
 import React, {useCallback, useEffect} from "react";
-import {fetchProfileTC} from "../../bll/profileReducer";
+import {fetchProfileTC, getProfileStatusTC, updateStatusTC} from "../../bll/profileReducer";
 import {useAppDispatch, useAppSelector} from "../../bll/state/hooks";
 import {EditableSpan} from "../EditableSpan/EditableSpan";
 
@@ -11,11 +11,13 @@ export const Profile = React.memo(() => {
   const profileUser = useAppSelector((state) => state.profile.profile)
   const status = useAppSelector((state) => state.profile.status)
   const onChangeStatusValue = useCallback((inputValue: string) => {
-
-  },[])
+    dispatch(updateStatusTC(inputValue))
+    dispatch(getProfileStatusTC((24111)))
+  }, [dispatch])
   useEffect(() => {
     dispatch(fetchProfileTC(24111))
   }, [dispatch])
+
   return (
     <>
       <Box component={'div'} className={s.profile}>
@@ -29,7 +31,8 @@ export const Profile = React.memo(() => {
         </Box>
         <Box component='div' className={s.profile_title}>
           <EditableSpan title={status} callBack={onChangeStatusValue}/>
-          <h3 className={s.userName}><span>Name:</span>{profileUser.fullName ? profileUser.fullName : 'name will come later'}</h3>
+          <h3 className={s.userName}>
+            <span>Name:</span>{profileUser.fullName ? profileUser.fullName : 'name will come later'}</h3>
           <h3 className={s.contacts}><span>Contacts:</span>{profileUser.contacts && 'contacts will come later'}</h3>
         </Box>
       </Box>

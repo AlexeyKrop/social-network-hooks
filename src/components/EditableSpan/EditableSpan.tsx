@@ -12,13 +12,17 @@ export const EditableSpan = React.memo((props: EditableSpanType) => {
   const onClickDoubleHandler = () => {
     setEditMode(!editMode)
   }
+  const onBlurHandler = () => {
+    setEditMode(!editMode)
+    props.callBack(inputValue)
+  }
   const changeTaskValue = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.currentTarget.value)
-    props.callBack(e.currentTarget.value)
-  },[props])
+  },[props.title, props.callBack])
+  console.log(props.title)
   return (
     <>
-      {!editMode ? <h3 onDoubleClick={onClickDoubleHandler}>{props.title ? props.title : 'status'}</h3> : <TextField  onChange={changeTaskValue} label={props.title} variant="standard" value={inputValue} onBlur={onClickDoubleHandler} autoFocus type="text"/>}
+      {!editMode ? <h3 onDoubleClick={onClickDoubleHandler}>{props.title ? props.title : 'status'}</h3> : <TextField  onChange={changeTaskValue} label={props.title} variant="standard" value={inputValue} onBlur={onBlurHandler} autoFocus type="text"/>}
     </>
   )
 })

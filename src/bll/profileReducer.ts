@@ -1,4 +1,4 @@
-import {ProfileUserType, userAPI} from "../api/api";
+import {profileAPI, ProfileUserType, userAPI} from "../api/api";
 import {Dispatch} from "redux";
 
 const initialState = {
@@ -42,10 +42,21 @@ export const fetchProfileTC = (id: number) => {
 
   }
 }
-
+export const getProfileStatusTC = (id: number) => {
+  return (dispatch: Dispatch) => {
+    profileAPI.getStatus(id)
+      .then(res => dispatch(setStatusAC(res.data)))
+  }
+}
+export const updateStatusTC = (status: string) => {
+  return (dispatch: Dispatch) => {
+    profileAPI.updateStatus(status)
+      .then(() => dispatch(setStatusAC(status)))
+  }
+}
 //TYPES
 type InitialState = typeof initialState
-export type ProfileReducerAT = SetUserAT | SetStatusAT  | UpdateProfileAT
+export type ProfileReducerAT = SetUserAT | SetStatusAT | UpdateProfileAT
 export type SetUserAT = ReturnType<typeof setUserAC>
 export type SetStatusAT = ReturnType<typeof setStatusAC>
 export type UpdateProfileAT = ReturnType<typeof updateProfileAC>
