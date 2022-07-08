@@ -5,6 +5,8 @@ import React, {useCallback, useEffect} from "react";
 import {fetchProfileTC, getProfileStatusTC, updateStatusTC} from "../../bll/profileReducer";
 import {useAppDispatch, useAppSelector} from "../../bll/state/hooks";
 import {EditableSpan} from "../EditableSpan/EditableSpan";
+import {MyPost} from "./My post/MyPost";
+
 
 export const Profile = React.memo(() => {
   const dispatch = useAppDispatch()
@@ -20,6 +22,7 @@ export const Profile = React.memo(() => {
 
   return (
     <>
+      <Box className={s.wrapper}>
       <Box component={'div'} className={s.profile}>
         <Box component='div' className={s.profile_info}>
           <Link to="#">
@@ -35,6 +38,8 @@ export const Profile = React.memo(() => {
             <span>Name:</span>{profileUser.fullName ? profileUser.fullName : 'name will come later'}</h3>
           <h3 className={s.contacts}><span>Contacts:</span>{profileUser.contacts && 'contacts will come later'}</h3>
         </Box>
+      </Box>
+        <MyPost/>
       </Box>
     </>
   )

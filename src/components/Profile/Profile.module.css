@@ -1,7 +1,9 @@
-.profile{
+.wrapper{
     width: 80%;
     margin-left: auto;
     padding: 82px 24px;
+}
+.profile{
     display: flex;
     align-items: flex-start;
 }
@@ -24,3 +26,4 @@
 .profile_title span{
     color: #000;
 }
+
