@@ -7,6 +7,7 @@ import {Sidebar} from "./components/Sidebar/Sidebar";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import {Profile} from "./components/Profile/Profile";
 import {Friends} from "./components/Friends/Friends";
+import {Dialogs} from "./components/Dialogs/Dialogs";
 
 
 export const App = () => {
@@ -23,6 +24,7 @@ export const App = () => {
           <Routes>
             <Route path="/profile/" element={<Profile/>}/>
             <Route path="/friends/" element={<Friends/>}/>
+            <Route path="/dialogs/" element={<Dialogs/>}/>
           </Routes>
         </main>
       </div>

@@ -1,0 +1,10 @@
+.profile{
+    width: 80%;
+    margin-left: auto;
+    padding: 12px 24px;
+}
+.image_info{
+    max-width: 360px;
+    width: 100%;
+    display: flex;
+}

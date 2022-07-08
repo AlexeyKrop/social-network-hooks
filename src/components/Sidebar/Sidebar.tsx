@@ -4,35 +4,23 @@ import PersonIcon from '@mui/icons-material/Person';
 import PeopleIcon from '@mui/icons-material/People';
 import MessageIcon from '@mui/icons-material/Message';
 import {Link} from "react-router-dom";
-// const useStyles = makeStyles((theme: any) => ({
-//   menuSliderContainer: {
-//     width: 250,
-//     background: "#511",
-//     height: "100%"
-//   },
-//   avatar: {
-//     margin: "0.5rem auto",
-//     padding: "1rem",
-//     width: theme.spacing(13),
-//     height: theme.spacing(13)
-//   },
-//   listItem: {
-//     color: "tan"
-//   }
-// }));
+import s from './Sidebar.module.css'
 
 const listItems = [
   {
     listIcon: <PersonIcon/>,
-    listText: "Profile"
+    listText: "Profile",
+    nav: "/profile"
   },
   {
     listIcon: <PeopleIcon/>,
-    listText: "Friends"
+    listText: "Friends",
+    nav: "/friends"
   },
   {
     listIcon: <MessageIcon/>,
-    listText: "Message"
+    listText: "Message",
+    nav: "/dialogs"
   }
 ];
 
@@ -40,38 +28,21 @@ export const Sidebar = () => {
   return (
     <>
       <CssBaseline/>
-      <Box component="div">
+      <Box component="div"
+           sx={{
+             width: '20%',
+             position: 'fixed',
+             backgroundColor: '#fffff'
+           }}
+           >
         <List>
-          <Link to="/profile">
-            <ListItem>
-              <ListItemIcon>
-                {<PersonIcon/>}
-              </ListItemIcon>
-              <ListItemText primary={'Profile'}/>
-            </ListItem>
-          </Link>
-          <Link to='/friends'>
-            <ListItem>
-              <ListItemIcon>
-                {<PeopleIcon/>}
-              </ListItemIcon>
-              <ListItemText primary={'Friends'}/>
-            </ListItem>
-          </Link>
-
-          <ListItem>
-            <ListItemIcon>
-              {<MessageIcon/>}
-            </ListItemIcon>
-            <ListItemText primary={'Message'}/>
-          </ListItem>
           {listItems.map((listItem, index) => (
-            <ListItem button key={index}>
+            <Link className={s.link} key={index} to={listItem.nav}><ListItem button >
               <ListItemIcon>
                 {listItem.listIcon}
               </ListItemIcon>
               <ListItemText primary={listItem.listText}/>
-            </ListItem>
+            </ListItem></Link>
           ))}
         </List>
       </Box>
