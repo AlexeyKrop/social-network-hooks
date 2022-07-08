@@ -1,9 +1,11 @@
 import {AnyAction, applyMiddleware, combineReducers, legacy_createStore as createStore} from "redux";
 import {usersReducer, UsersReducerAT} from "../usersReducer";
 import thunkMiddleware, {ThunkAction, ThunkDispatch} from "redux-thunk";
+import {profileReducer} from "../profileReducer";
 
 const rootReducer = combineReducers({
-  users: usersReducer
+  users: usersReducer,
+  profile: profileReducer
 })
 const store = createStore(rootReducer,applyMiddleware(thunkMiddleware))
 //Type

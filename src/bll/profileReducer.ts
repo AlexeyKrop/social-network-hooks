@@ -1,10 +1,11 @@
-import {ProfileUserType} from "../api/api";
+import {ProfileUserType, userAPI} from "../api/api";
+import {Dispatch} from "redux";
 
 const initialState = {
   profile: {} as ProfileUserType,
   status: ''
 }
-export const profileReducer = (state: InitialState, action: ProfileReducerAT) => {
+export const profileReducer = (state: InitialState = initialState, action: ProfileReducerAT) => {
   switch (action.type) {
     case "SET-USER-PROFILE":
       return {
@@ -26,10 +27,22 @@ export const profileReducer = (state: InitialState, action: ProfileReducerAT) =>
   return state
 }
 
-//ACTIONS
+//ACTIONS CREATOR
 export const setUserAC = (profile: ProfileUserType) => ({type: 'SET-USER-PROFILE', profile} as const)
 export const setStatusAC = (status: string) => ({type: 'SET-STATUS', status} as const)
 export const updateProfileAC = (profile: ProfileUserType) => ({type: 'UPDATE-PROFILE', profile} as const)
+
+//THUNKS CREATOR
+export const fetchProfileTC = (id: number) => {
+  return (dispatch: Dispatch) => {
+    userAPI.getProfilePageUser(id)
+      .then(res => {
+        dispatch(setUserAC(res.data))
+      })
+
+  }
+}
+
 //TYPES
 type InitialState = typeof initialState
 export type ProfileReducerAT = SetUserAT | SetStatusAT  | UpdateProfileAT

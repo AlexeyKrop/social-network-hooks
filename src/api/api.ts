@@ -11,7 +11,7 @@ export const userAPI = {
   getUser(currentPageNumber: number = 10, pageSize: number = 10) {
     return instance.get<ResponseUsersType<Array<UserType>>>(`users?page=${currentPageNumber}&count=${pageSize}`)
   },
-  getProfilePageUser(id: string) {
+  getProfilePageUser(id: number) {
     return instance.get<ProfileUserType>(`/profile/${id}`)
   },
   addUser(id: string) {
