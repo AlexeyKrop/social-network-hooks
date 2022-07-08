@@ -1,18 +1,26 @@
 .profile{
     width: 80%;
     margin-left: auto;
-    padding: 12px 24px;
+    padding: 82px 24px;
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
 }
-.image_info{
+.profile_info{
     max-width: 360px;
     width: 100%;
     display: flex;
 }
-.title_info{
-    margin-left: 15px;
+.profile_title{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 85px;
 }
-.title_info p {
+.profile_title h3 {
+    font-size: 16px;
+    color: #6B7C8F;
     margin: 0;
+}
+.profile_title span{
+    color: #000;
 }

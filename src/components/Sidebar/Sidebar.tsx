@@ -28,13 +28,7 @@ export const Sidebar = () => {
   return (
     <>
       <CssBaseline/>
-      <Box component="div"
-           sx={{
-             width: '20%',
-             position: 'fixed',
-             backgroundColor: '#fffff'
-           }}
-           >
+      <Box className={s.wrapper} component="div">
         <List>
           {listItems.map((listItem, index) => (
             <Link className={s.link} key={index} to={listItem.nav}><ListItem button >
