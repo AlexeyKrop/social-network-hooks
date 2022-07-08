@@ -14,7 +14,9 @@ export const Profile = () => {
           </Link>
         </Box>
         <Box component='div' className={s.title_info}>
-
+          <p>Имя</p>
+          <p>Статуc</p>
+          <p>Почта</p>
         </Box>
       </Box>
     </>

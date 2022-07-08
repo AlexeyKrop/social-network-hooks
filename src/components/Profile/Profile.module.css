@@ -2,9 +2,17 @@
     width: 80%;
     margin-left: auto;
     padding: 12px 24px;
+    display: flex;
+    align-items: flex-end;
 }
 .image_info{
     max-width: 360px;
     width: 100%;
     display: flex;
+}
+.title_info{
+    margin-left: 15px;
+}
+.title_info p {
+    margin: 0;
 }
