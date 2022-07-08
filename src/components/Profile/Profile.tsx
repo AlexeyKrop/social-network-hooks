@@ -12,10 +12,10 @@ export const Profile = React.memo(() => {
   const status = useAppSelector((state) => state.profile.status)
   const onChangeStatusValue = useCallback((inputValue: string) => {
     dispatch(updateStatusTC(inputValue))
-    dispatch(getProfileStatusTC((24111)))
   }, [dispatch])
   useEffect(() => {
     dispatch(fetchProfileTC(24111))
+    dispatch(getProfileStatusTC((24111)))
   }, [dispatch])
 
   return (
