@@ -1,20 +1,14 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import './App.css';
-import {getUserTC} from "./bll/usersReducer";
-import {useAppDispatch} from "./bll/state/hooks";
 import {Header} from "./components/Header/Header";
 import {Sidebar} from "./components/Sidebar/Sidebar";
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Profile} from "./components/Profile/Profile";
 import {Friends} from "./components/Friends/Friends";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 
 
 export const App = () => {
-  const dispatch = useAppDispatch()
-  useEffect(() => {
-    dispatch(getUserTC())
-  })
   return (
     <BrowserRouter>
       <div className="App">

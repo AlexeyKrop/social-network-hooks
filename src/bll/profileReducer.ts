@@ -1,9 +1,10 @@
 import {profileAPI, ProfileUserType, userAPI} from "../api/api";
 import {Dispatch} from "redux";
+import {setAppLoadingAC} from "./state/appReducer";
 
 const initialState = {
   profile: {} as ProfileUserType,
-  status: ''
+  status: '' ,
 }
 export const profileReducer = (state: InitialState = initialState, action: ProfileReducerAT) => {
   switch (action.type) {
@@ -38,6 +39,7 @@ export const fetchProfileTC = (id: number) => {
     userAPI.getProfilePageUser(id)
       .then(res => {
         dispatch(setUserAC(res.data))
+        dispatch(setAppLoadingAC("idle"))
       })
 
   }
