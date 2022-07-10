@@ -18,7 +18,7 @@ export const Friends = () => {
     <>
       <div className={s.wrapper}>
         {users.map(u => {
-          return <div key={u.id}><ActionAreaCard onChangeStatusValue={onChangeStatusValue} user={u}/></div>
+          return <div className={s.card} key={u.id}><ActionAreaCard onChangeStatusValue={onChangeStatusValue} user={u}/></div>
         })}
       </div>
     </>

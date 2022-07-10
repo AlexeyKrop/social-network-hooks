@@ -1,5 +1,6 @@
 import {userAPI, UserType} from "../api/api";
 import {Dispatch} from "redux";
+import {setAppLoadingAC} from "./state/appReducer";
 
 const initialState = {
   users: [] as Array<UserType>,
@@ -32,7 +33,11 @@ export const removeUserAC = (id: number) => ({type: 'REMOVE-USER', id} as const)
 export const getUserTC = (currentPageNumber: number = 10, pageSize: number = 10) => {
   return (dispatch: Dispatch) => {
     userAPI.getUser(currentPageNumber, pageSize)
-      .then(res => dispatch(setUsersAC(res.data.items)))
+      .then(res => {
+          dispatch(setUsersAC(res.data.items))
+          dispatch(setAppLoadingAC("idle"))
+        }
+      )
   }
 }
 //Type
