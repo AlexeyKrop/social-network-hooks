@@ -22,22 +22,24 @@ export const Profile = React.memo(() => {
   return (
     <>
       <Box className={s.wrapper}>
-      <Box component={'div'} className={s.profile}>
-        <Box component='div' className={s.profile_info}>
-          <Link to="#">
-            <img
-              className={s.image}
-              src="https://img4.goodfon.ru/original/1280x720/d/84/chingcho-chang-vostochnaia-gubki.jpg"
-              alt="img"/>
-          </Link>
+        <Box component={'div'} className={s.profile}>
+          <Box component='div' className={s.profile_info}>
+            <Link to="#">
+              <img
+                className={s.image}
+                src="https://img4.goodfon.ru/original/1280x720/d/84/chingcho-chang-vostochnaia-gubki.jpg"
+                alt="img"/>
+            </Link>
+          </Box>
+          <Box component='div' className={s.profile_title}>
+            <Box className={s.statusWrapper}>
+              <span>Status: </span><EditableSpan title={status} callBack={onChangeStatusValue}/>
+            </Box>
+            <h3 className={s.userName}>
+              <span>Name:</span>{profileUser.fullName ? profileUser.fullName : 'name will come later'}</h3>
+            <h3><span>Contacts:</span>{profileUser.contacts && 'contacts will come later'}</h3>
+          </Box>
         </Box>
-        <Box component='div' className={s.profile_title}>
-          <EditableSpan title={status} callBack={onChangeStatusValue}/>
-          <h3 className={s.userName}>
-            <span>Name:</span>{profileUser.fullName ? profileUser.fullName : 'name will come later'}</h3>
-          <h3 className={s.contacts}><span>Contacts:</span>{profileUser.contacts && 'contacts will come later'}</h3>
-        </Box>
-      </Box>
         <MyPost/>
       </Box>
     </>

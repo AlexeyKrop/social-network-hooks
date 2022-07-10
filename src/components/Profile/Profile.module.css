@@ -22,6 +22,11 @@
     margin: 0;
 }
 .profile_title span{
+    font-size: 16px;
+    font-weight: bold;
     color: #000;
+}
+.statusWrapper{
+    display: flex;
 }
 
