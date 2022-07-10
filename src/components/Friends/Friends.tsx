@@ -4,7 +4,6 @@ import {useAppDispatch, useAppSelector} from "../../bll/state/hooks";
 import s from './Friends.module.css'
 import {ActionAreaCard} from "./Card/Card";
 import {updateStatusTC} from "../../bll/profileReducer";
-
 export const Friends = () => {
   const dispatch = useAppDispatch()
   const onChangeStatusValue = useCallback((inputValue: string) => {
