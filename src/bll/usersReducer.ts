@@ -4,8 +4,6 @@ import {Dispatch} from "redux";
 const initialState = {
   users: [] as Array<UserType>,
 }
-
-
 export const usersReducer = (state: InitialStateType = initialState, action: UsersReducerAT) => {
   switch (action.type) {
     case "SET-USER":
