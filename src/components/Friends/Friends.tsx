@@ -3,23 +3,25 @@ import {useAppDispatch, useAppSelector} from "../../bll/state/hooks";
 import s from './Friends.module.css'
 import {ActionAreaCard} from "./Card/Card";
 import {updateStatusTC} from "../../bll/profileReducer";
-import {getUserTC} from "../../bll/usersReducer";
+import {getUserTC, setCurrentPageAC, setFetchingPageAC} from "../../bll/usersReducer";
 
 export const Friends = React.memo(() => {
-  const [fetching, setFetching] = useState<boolean>(true)
-  const [currentPage, setCurrentPage] = useState<number>(1)
   const dispatch = useAppDispatch()
   const onChangeStatusValue = useCallback((inputValue: string) => {
     dispatch(updateStatusTC(inputValue))
   }, [dispatch])
   const users = useAppSelector(state => state.users.users)
+  const fetching = useAppSelector(state => state.users.fetching)
+  const page = useAppSelector(state => state.users.page)
+  console.log(fetching)
+  console.log(page)
   useEffect(() => {
     if (fetching) {
-      dispatch(getUserTC(currentPage, 20))
-      setCurrentPage(currentPage + 1)
-      setFetching(false)
+      dispatch(getUserTC(page, 2))
+      dispatch(setFetchingPageAC(false))
+      dispatch(setCurrentPageAC(page))
     }
-    }, [currentPage, fetching, dispatch])
+    }, [page, fetching, dispatch])
     useEffect(() => {
       document.addEventListener('scroll', scrollHandler)
       return () => {
@@ -27,8 +29,8 @@ export const Friends = React.memo(() => {
       }
     })
     const scrollHandler = (e: any) => {
-      if (e.currentTarget.documentElement.scrollHeight - (e.currentTarget.documentElement.scrollTop + window.innerHeight) < 100) {
-        setFetching(true)
+      if (e.currentTarget.documentElement.scrollHeight - (e.currentTarget.documentElement.scrollTop + window.innerHeight) < 20) {
+        dispatch(setFetchingPageAC(true))
       }
     }
     return (
