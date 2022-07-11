@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useCallback, useEffect} from "react";
 import {useAppDispatch, useAppSelector} from "../../bll/state/hooks";
 import s from './Friends.module.css'
 import {ActionAreaCard} from "./Card/Card";
@@ -13,8 +13,6 @@ export const Friends = React.memo(() => {
   const users = useAppSelector(state => state.users.users)
   const fetching = useAppSelector(state => state.users.fetching)
   const page = useAppSelector(state => state.users.page)
-  console.log(fetching)
-  console.log(page)
   useEffect(() => {
     if (fetching) {
       dispatch(getUserTC(page, 2))
