@@ -3,6 +3,7 @@ import {UserType} from "../api/api";
 
 type StateType = {
   users: UserType[]
+  page: 0
 }
 
 let startState: StateType
@@ -41,7 +42,8 @@ beforeEach(() => {
         status: 'student',
         followed: true,
       },
-    ]
+    ],
+    page: 0
   }
 })
 test('check get users', () => {

@@ -4,13 +4,14 @@ import {setAppLoadingAC} from "./state/appReducer";
 
 const initialState = {
   users: [] as Array<UserType>,
+  page: 1
 }
 export const usersReducer = (state: InitialStateType = initialState, action: UsersReducerAT) => {
   switch (action.type) {
     case "SET-USER":
       return {
         ...state,
-        users: [...action.users]
+        users: [...state.users, ...action.users]
       }
     case "ADD-USER":
       return {
@@ -22,6 +23,11 @@ export const usersReducer = (state: InitialStateType = initialState, action: Use
         ...state,
         users: state.users.filter(u => u.id !== action.id)
       }
+    // case "INC-PAGE":
+    //   return {
+    //     ...state,
+    //     page: action.page + 1
+    //   }
   }
   return state
 }
@@ -29,8 +35,9 @@ export const usersReducer = (state: InitialStateType = initialState, action: Use
 export const setUsersAC = (users: Array<UserType>) => ({type: 'SET-USER', users} as const)
 export const addUserAC = (id: number) => ({type: 'ADD-USER', id} as const)
 export const removeUserAC = (id: number) => ({type: 'REMOVE-USER', id} as const)
+// export const setCurrentPageAC = (page: number) => ({type: 'INC-PAGE', page} as const)
 //Thunk
-export const getUserTC = (currentPageNumber: number = 10, pageSize: number = 10) => {
+export const getUserTC = (currentPageNumber: number, pageSize: number) => {
   return (dispatch: Dispatch) => {
     userAPI.getUser(currentPageNumber, pageSize)
       .then(res => {
@@ -46,3 +53,4 @@ export type UsersReducerAT = SetUserAT | AddUserAT | RemoveUserAT
 type SetUserAT = ReturnType<typeof setUsersAC>
 type AddUserAT = ReturnType<typeof addUserAC>
 type RemoveUserAT = ReturnType<typeof removeUserAC>
+// type SetCurrentPageAC = ReturnType<typeof setCurrentPageAC>
