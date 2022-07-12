@@ -3,7 +3,7 @@ import React from "react";
 import PersonIcon from '@mui/icons-material/Person';
 import PeopleIcon from '@mui/icons-material/People';
 import MessageIcon from '@mui/icons-material/Message';
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import s from './Sidebar.module.css'
 
 const listItems = [
@@ -31,12 +31,12 @@ export const Sidebar = () => {
       <Box className={s.wrapper} component="div">
         <List>
           {listItems.map((listItem, index) => (
-            <Link className={s.link} key={index} to={listItem.nav}><ListItem button >
+            <NavLink className={s.link} key={index} to={listItem.nav}><ListItem button >
               <ListItemIcon>
                 {listItem.listIcon}
               </ListItemIcon>
               <ListItemText primary={listItem.listText}/>
-            </ListItem></Link>
+            </ListItem></NavLink>
           ))}
         </List>
       </Box>

@@ -3,7 +3,8 @@ import {useAppDispatch, useAppSelector} from "../../bll/state/hooks";
 import s from './Friends.module.css'
 import {ActionAreaCard} from "./Card/Card";
 import {updateStatusTC} from "../../bll/profileReducer";
-import {getUserTC, setCurrentPageAC, setFetchingPageAC} from "../../bll/usersReducer";
+import {getUsersTC, setCurrentPageAC, setFetchingPageAC} from "../../bll/usersReducer";
+import {NavLink} from "react-router-dom";
 
 export const Friends = React.memo(() => {
   const dispatch = useAppDispatch()
@@ -15,31 +16,33 @@ export const Friends = React.memo(() => {
   const page = useAppSelector(state => state.users.page)
   useEffect(() => {
     if (fetching) {
-      dispatch(getUserTC(page, 2))
+      dispatch(getUsersTC(page, 10))
       dispatch(setFetchingPageAC(false))
       dispatch(setCurrentPageAC(page))
     }
-    }, [page, fetching, dispatch])
-    useEffect(() => {
-      document.addEventListener('scroll', scrollHandler)
-      return () => {
-        document.removeEventListener('scroll', scrollHandler)
-      }
-    })
-    const scrollHandler = (e: any) => {
-      if (e.currentTarget.documentElement.scrollHeight - (e.currentTarget.documentElement.scrollTop + window.innerHeight) < 20) {
-        dispatch(setFetchingPageAC(true))
-      }
+  }, [page, fetching, dispatch])
+  useEffect(() => {
+    document.addEventListener('scroll', scrollHandler)
+    return () => {
+      document.removeEventListener('scroll', scrollHandler)
     }
-    return (
-      <>
-        <div className={s.wrapper}>
-          {users.map(u => {
-            return <div className={s.card} key={u.id}><ActionAreaCard onChangeStatusValue={onChangeStatusValue}
-                                                                      user={u}/>
-            </div>
-          })}
-        </div>
-      </>
-    )
   })
+  const scrollHandler = (e: any) => {
+    if (e.currentTarget.documentElement.scrollHeight - (e.currentTarget.documentElement.scrollTop + window.innerHeight) < 100) {
+      dispatch(setFetchingPageAC(true))
+    }
+  }
+  return (
+    <>
+      <div className={s.wrapper}>
+        {users.map(u => {
+          return <div className={s.card} key={u.id}>
+            <NavLink to={`profile/${u.id}`}>
+              <ActionAreaCard onChangeStatusValue={onChangeStatusValue}
+                              user={u}/></NavLink>
+          </div>
+        })}
+      </div>
+    </>
+  )
+})

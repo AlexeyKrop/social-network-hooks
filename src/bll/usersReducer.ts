@@ -44,7 +44,7 @@ export const removeUserAC = (id: number) => ({type: 'REMOVE-USER', id} as const)
 export const setCurrentPageAC = (page: number) => ({type: 'INC-PAGE', page} as const)
 export const setFetchingPageAC = (fetching: boolean) => ({type: 'CHANGE-FETCHING', fetching} as const)
 //Thunk
-export const getUserTC = (currentPageNumber: number, pageSize: number) => {
+export const getUsersTC = (currentPageNumber: number, pageSize: number) => {
   return (dispatch: Dispatch) => {
     userAPI.getUser(currentPageNumber, pageSize)
       .then(res => {

@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import {NavLink, useParams} from "react-router-dom";
 import s from './Profile.module.css'
 import React, {useCallback, useEffect} from "react";
 import {fetchProfileTC, getProfileStatusTC, updateStatusTC} from "../../bll/profileReducer";
@@ -12,6 +12,9 @@ export const Profile = React.memo(() => {
   const dispatch = useAppDispatch()
   const profileUser = useAppSelector((state) => state.profile.profile)
   const status = useAppSelector((state) => state.profile.status)
+  const params = useParams();
+  let some = params
+  console.log(some)
   useEffect(() => {
     dispatch(fetchProfileTC(24111))
     dispatch(getProfileStatusTC((24111)))
@@ -24,12 +27,12 @@ export const Profile = React.memo(() => {
       <Box className={s.wrapper}>
         <Box component={'div'} className={s.profile}>
           <Box component='div' className={s.profile_info}>
-            <Link to="#">
+            <NavLink to="#">
               <img
                 className={s.image}
                 src="https://img4.goodfon.ru/original/1280x720/d/84/chingcho-chang-vostochnaia-gubki.jpg"
                 alt="img"/>
-            </Link>
+            </NavLink>
           </Box>
           <Box component='div' className={s.profile_title}>
             <Box className={s.statusWrapper}>
