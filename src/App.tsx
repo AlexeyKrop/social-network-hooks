@@ -17,7 +17,8 @@ export const App = React.memo(() => {
         <Sidebar/>
         <main>
           <Routes>
-            <Route path='/profile/' element={<Profile/>}/>
+            <Route path='profile/' element={<Profile/>}/>
+            <Route path='/profile/:id' element={<Profile/>}/>
             <Route path="/friends/" element={<Friends/>}/>
             <Route path="/dialogs/" element={<Dialogs/>}/>
           </Routes>

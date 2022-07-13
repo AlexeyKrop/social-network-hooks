@@ -37,7 +37,7 @@ export const Friends = React.memo(() => {
       <div className={s.wrapper}>
         {users.map(u => {
           return <div className={s.card} key={u.id}>
-            <NavLink to={`profile/${u.id}`}>
+            <NavLink to={`/profile/${u.id}`}>
               <ActionAreaCard onChangeStatusValue={onChangeStatusValue}
                               user={u}/></NavLink>
           </div>

@@ -12,11 +12,15 @@ export const Profile = React.memo(() => {
   const dispatch = useAppDispatch()
   const profileUser = useAppSelector((state) => state.profile.profile)
   const status = useAppSelector((state) => state.profile.status)
-  const params = useParams();
-  let some = params
-  console.log(some)
+  const params = useParams<'id'>();
+  let id = params.id
   useEffect(() => {
-    dispatch(fetchProfileTC(24111))
+    if (id) {
+      dispatch(fetchProfileTC(+id))
+    }else{
+      dispatch(fetchProfileTC(24111))
+    }
+
     dispatch(getProfileStatusTC((24111)))
   }, [dispatch])
   const onChangeStatusValue = useCallback((inputValue: string) => {
