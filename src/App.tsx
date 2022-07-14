@@ -10,6 +10,7 @@ import {Dialogs} from "./components/Dialogs/Dialogs";
 
 export const App = React.memo(() => {
   console.log('App reder')
+  console.log('App reder')
   return (
     <BrowserRouter>
       <div className="App">
