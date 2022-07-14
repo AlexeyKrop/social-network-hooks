@@ -20,9 +20,8 @@ export const Profile = React.memo(() => {
     }else{
       dispatch(fetchProfileTC(24111))
     }
-
     dispatch(getProfileStatusTC((24111)))
-  }, [dispatch])
+  }, [id, dispatch])
   const onChangeStatusValue = useCallback((inputValue: string) => {
     dispatch(updateStatusTC(inputValue))
   }, [dispatch])
