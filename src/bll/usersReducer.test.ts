@@ -1,4 +1,4 @@
-import {addUserAC, removeUserAC, setUsersAC, usersReducer} from "./usersReducer";
+import {setFollowUserAC, setUnFollowUserAC, setUsersAC, usersReducer} from "./usersReducer";
 import {UserType} from "../api/api";
 
 type StateType = {
@@ -54,10 +54,10 @@ test('check get users', () => {
   expect(endState.users.length).toBe(3)
 })
 test('check add user', () => {
-  let endState = usersReducer(startState, addUserAC(1))
+  let endState = usersReducer(startState, setFollowUserAC(1))
   expect(endState.users[0].followed).toBe(false)
 })
 test('check remove user', () => {
-  let endState = usersReducer(startState, removeUserAC(1))
+  let endState = usersReducer(startState, setUnFollowUserAC(1))
   expect(endState.users.length).toBe(2)
 })
