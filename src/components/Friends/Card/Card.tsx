@@ -7,6 +7,8 @@ import CardActions from "@mui/material/CardActions";
 import {UserType} from "../../../api/api";
 import s from "../Friends.module.css";
 import {NavLink} from 'react-router-dom';
+import {useAppSelector} from "../../../bll/state/hooks";
+import {CircularIndeterminate} from "../../../utils/preloader/CircularIndeterminate";
 
 type CardType = {
   user: UserType
@@ -14,6 +16,8 @@ type CardType = {
   getFollowUser: (id: number, follow: boolean) => void
 }
 export const ActionAreaCard = (props: CardType) => {
+
+  const loading = useAppSelector(state => state.app.loading)
   const onClickHandler = (id: number, follow: boolean) => {
     props.getFollowUser(id, follow)
   }
@@ -33,10 +37,12 @@ export const ActionAreaCard = (props: CardType) => {
         <Typography gutterBottom variant="subtitle2" component="p">
           {props.user.status !== null ? props.user.status : 'status will come later'}
         </Typography>
+
       <CardActions>
-        <Button onClick={() => onClickHandler(props.user.id, props.user.followed)} size="small" color="primary">
+        {loading === 'loading' ? <CircularIndeterminate /> :  <Button onClick={() => onClickHandler(props.user.id, props.user.followed)} size="small" color="primary">
           {props.user.followed ? 'unfollow' : 'follow'}
-        </Button>
+        </Button>}
+
       </CardActions>
     </Card>
   );

@@ -14,6 +14,9 @@ export const Friends = React.memo(() => {
   const users = useAppSelector(state => state.users.users)
   const fetching = useAppSelector(state => state.users.fetching)
   const page = useAppSelector(state => state.users.page)
+
+
+
   useEffect(() => {
     if (fetching) {
       dispatch(getUsersTC(page, 10))

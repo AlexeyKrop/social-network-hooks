@@ -56,20 +56,22 @@ export const getUsersTC = (currentPageNumber: number, pageSize: number) => {
 }
 export const setFollowTC = (id: number) => {
   return (dispatch: Dispatch) => {
+    dispatch(setAppLoadingAC("loading"))
     userAPI.addUser(id)
       .then(res => {
           dispatch(setFollowUserAC(id))
-          // dispatch(setAppLoadingAC("idle"))
+          dispatch(setAppLoadingAC("idle"))
         }
       )
   }
 }
 export const setUnFollowTC = (id: number) => {
   return (dispatch: Dispatch) => {
+    dispatch(setAppLoadingAC("loading"))
     userAPI.removeUser(id)
       .then(res => {
           dispatch(setUnFollowUserAC(id))
-          // dispatch(setAppLoadingAC("idle"))
+          dispatch(setAppLoadingAC("idle"))
         }
       )
   }
