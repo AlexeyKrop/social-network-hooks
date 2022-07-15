@@ -5,6 +5,7 @@ type StateType = {
   users: UserType[]
   page: number
   fetching: boolean,
+  setId: Array<number>
 }
 
 let startState: StateType
@@ -46,6 +47,7 @@ beforeEach(() => {
     ],
     page: 0,
     fetching: false,
+    setId: [1]
 
   }
 })
