@@ -18,7 +18,7 @@ export const userAPI = {
     return instance.post<ResponseType>(`/follow/${id}`)
   },
   removeUser(id: number) {
-    return instance.delete(`/follow/${id}`)
+    return instance.delete<ResponseType>(`/follow/${id}`)
   }
 }
 

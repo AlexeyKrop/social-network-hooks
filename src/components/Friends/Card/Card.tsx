@@ -11,11 +11,11 @@ import {NavLink} from 'react-router-dom';
 type CardType = {
   user: UserType
   onChangeStatusValue: (value: string) => void
-  getFollowUser: (id: number) => void
+  getFollowUser: (id: number, follow: boolean) => void
 }
 export const ActionAreaCard = (props: CardType) => {
-  const onClickHandler = (id: number) => {
-    props.getFollowUser(id)
+  const onClickHandler = (id: number, follow: boolean) => {
+    props.getFollowUser(id, follow)
   }
   return (
     <Card sx={{maxWidth: 265}}>
@@ -34,8 +34,8 @@ export const ActionAreaCard = (props: CardType) => {
           {props.user.status !== null ? props.user.status : 'status will come later'}
         </Typography>
       <CardActions>
-        <Button onClick={() => onClickHandler(props.user.id)} size="small" color="primary">
-          {props.user.followed ? 'follow' : 'unfollow'}
+        <Button onClick={() => onClickHandler(props.user.id, props.user.followed)} size="small" color="primary">
+          {props.user.followed ? 'unfollow' : 'follow'}
         </Button>
       </CardActions>
     </Card>

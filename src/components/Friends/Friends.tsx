@@ -3,7 +3,7 @@ import {useAppDispatch, useAppSelector} from "../../bll/state/hooks";
 import s from './Friends.module.css'
 import {ActionAreaCard} from "./Card/Card";
 import {updateStatusTC} from "../../bll/profileReducer";
-import {getUsersTC, setCurrentPageAC, setFetchingPageAC, setFollowTC} from "../../bll/usersReducer";
+import {getUsersTC, setCurrentPageAC, setFetchingPageAC, setFollowTC, setUnFollowTC} from "../../bll/usersReducer";
 
 
 export const Friends = React.memo(() => {
@@ -32,8 +32,14 @@ export const Friends = React.memo(() => {
       dispatch(setFetchingPageAC(true))
     }
   }
-  const getFollowUser = (id: number) => {
-    dispatch(setFollowTC(id))
+  const getFollowUser = (id: number, follow: boolean) => {
+    console.log(follow)
+    if (follow) {
+      dispatch(setUnFollowTC(id))
+    } else {
+      dispatch(setFollowTC(id))
+    }
+
   }
   return (
     <>
