@@ -11,3 +11,7 @@
 .card img{
     margin: 0 auto;
 }
+.link{
+    text-decoration: none;
+    color: #6B7C8F;
+}

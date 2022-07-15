@@ -5,7 +5,8 @@ import {setAppLoadingAC} from "./state/appReducer";
 const initialState = {
   users: [] as Array<UserType>,
   page: 1,
-  fetching: true
+  fetching: true,
+  follow: false
 }
 export const usersReducer = (state: InitialStateType = initialState, action: UsersReducerAT) => {
   switch (action.type) {
@@ -34,6 +35,11 @@ export const usersReducer = (state: InitialStateType = initialState, action: Use
         ...state,
         fetching: action.fetching
       }
+    case "SET-FOLLOW":
+      return{
+        ...state,
+        users: state.users.map(u=> u.id === action.id ? {...u, followed: !u.followed}: u)
+      }
   }
   return state
 }
@@ -43,6 +49,7 @@ export const addUserAC = (id: number) => ({type: 'ADD-USER', id} as const)
 export const removeUserAC = (id: number) => ({type: 'REMOVE-USER', id} as const)
 export const setCurrentPageAC = (page: number) => ({type: 'INC-PAGE', page} as const)
 export const setFetchingPageAC = (fetching: boolean) => ({type: 'CHANGE-FETCHING', fetching} as const)
+export const setFollowUserAC = (id: number) => ({type: 'SET-FOLLOW', id} as const)
 //Thunk
 export const getUsersTC = (currentPageNumber: number, pageSize: number) => {
   return (dispatch: Dispatch) => {
@@ -54,11 +61,22 @@ export const getUsersTC = (currentPageNumber: number, pageSize: number) => {
       )
   }
 }
+export const setFollowTC = (id: number) => {
+  return (dispatch: Dispatch) => {
+    userAPI.addUser(id)
+      .then(res => {
+          dispatch(setFollowUserAC(id))
+          // dispatch(setAppLoadingAC("idle"))
+        }
+      )
+  }
+}
 //Type
 export type InitialStateType = typeof initialState
-export type UsersReducerAT = SetUserAT | AddUserAT | RemoveUserAT | SetFetchingPageAT | SetCurrentPageAT
+export type UsersReducerAT = SetUserAT | AddUserAT | RemoveUserAT | SetFetchingPageAT | SetCurrentPageAT | SetFollowUserAT
 type SetUserAT = ReturnType<typeof setUsersAC>
 type AddUserAT = ReturnType<typeof addUserAC>
 type RemoveUserAT = ReturnType<typeof removeUserAC>
 type SetFetchingPageAT = ReturnType<typeof setFetchingPageAC>
 type SetCurrentPageAT = ReturnType<typeof setCurrentPageAC>
+type SetFollowUserAT = ReturnType<typeof setFollowUserAC>

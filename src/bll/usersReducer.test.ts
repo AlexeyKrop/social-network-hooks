@@ -3,8 +3,9 @@ import {UserType} from "../api/api";
 
 type StateType = {
   users: UserType[]
-  page: 0
-  fetching: false
+  page: number
+  fetching: boolean,
+  follow: boolean
 }
 
 let startState: StateType
@@ -45,7 +46,8 @@ beforeEach(() => {
       },
     ],
     page: 0,
-    fetching: false
+    fetching: false,
+    follow: false
   }
 })
 test('check get users', () => {

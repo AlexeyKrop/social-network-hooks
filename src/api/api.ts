@@ -14,10 +14,10 @@ export const userAPI = {
   getProfilePageUser(id: number) {
     return instance.get<ProfileUserType>(`/profile/${id}`)
   },
-  addUser(id: string) {
-    return instance.post<ResponseUsersType>(`/follow/${id}`)
+  addUser(id: number) {
+    return instance.post<ResponseType>(`/follow/${id}`)
   },
-  removeUser(id: string) {
+  removeUser(id: number) {
     return instance.delete(`/follow/${id}`)
   }
 }
@@ -83,4 +83,9 @@ export type ProfileUserType = {
     small: string
     large: string
   }
+}
+type ResponseType<D = {}> = {
+  resultCode: number
+  messages: Array<string>,
+  data: D
 }

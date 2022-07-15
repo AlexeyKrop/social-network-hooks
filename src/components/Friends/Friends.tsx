@@ -4,7 +4,7 @@ import s from './Friends.module.css'
 import {ActionAreaCard} from "./Card/Card";
 import {updateStatusTC} from "../../bll/profileReducer";
 import {getUsersTC, setCurrentPageAC, setFetchingPageAC} from "../../bll/usersReducer";
-import {NavLink} from "react-router-dom";
+
 
 export const Friends = React.memo(() => {
   const dispatch = useAppDispatch()
@@ -37,9 +37,8 @@ export const Friends = React.memo(() => {
       <div className={s.wrapper}>
         {users.map(u => {
           return <div className={s.card} key={u.id}>
-            <NavLink to={`/profile/${u.id}`}>
-              <ActionAreaCard onChangeStatusValue={onChangeStatusValue}
-                              user={u}/></NavLink>
+            <ActionAreaCard onChangeStatusValue={onChangeStatusValue}
+                            user={u}/>
           </div>
         })}
       </div>
