@@ -15,6 +15,7 @@ type CardType = {
   getFollowUser: (id: number, follow: boolean) => void
 }
 export const ActionAreaCard = React.memo((props: CardType) => {
+  // const loading = useAppSelector(state => state.app.loading)
   const onClickHandler = useCallback((id: number, follow: boolean) => {
     props.getFollowUser(id, follow)
   }, [props])
