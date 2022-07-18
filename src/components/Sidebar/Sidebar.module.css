@@ -11,5 +11,6 @@
     transition: all 0.5s ease-out
 }
 .active{
-    background-color:#61dafb ;
+    text-decoration: none;
+    color: #3644D9;
 }
