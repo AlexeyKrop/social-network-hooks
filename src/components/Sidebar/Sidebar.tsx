@@ -10,17 +10,20 @@ const listItems = [
   {
     listIcon: <PersonIcon/>,
     listText: "Profile",
-    nav: "/profile"
+    nav: "/profile",
+    className:`${s.item}`
   },
   {
     listIcon: <PeopleIcon/>,
     listText: "Friends",
-    nav: "/friends"
+    nav: "/friends",
+    className:`${s.item}`
   },
   {
     listIcon: <MessageIcon/>,
     listText: "Message",
-    nav: "/dialogs"
+    nav: "/dialogs",
+    className:`${s.item}`
   }
 ];
 export const Sidebar = () => {
@@ -31,10 +34,10 @@ export const Sidebar = () => {
         <List>
           {listItems.map((listItem, index) => (
             <NavLink  className={({ isActive }) =>
-              isActive ? `${s.active}` : `${s.link}`
+              isActive ? `${s.active} ` : `${s.link}`
             } key={index} to={listItem.nav}><ListItem button >
-              <ListItemIcon>
-                {listItem.listIcon}
+              <ListItemIcon >
+                {listItem.listIcon }
               </ListItemIcon>
               <ListItemText primary={listItem.listText}/>
             </ListItem></NavLink>
