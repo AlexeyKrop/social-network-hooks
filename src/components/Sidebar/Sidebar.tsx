@@ -31,7 +31,7 @@ export const Sidebar = () => {
       <Box className={s.wrapper} component="div">
         <List>
           {listItems.map((listItem, index) => (
-            <NavLink className={s.link} key={index} to={listItem.nav}><ListItem button >
+            <NavLink className={s.link}  key={index} to={listItem.nav}><ListItem button >
               <ListItemIcon>
                 {listItem.listIcon}
               </ListItemIcon>
