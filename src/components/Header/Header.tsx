@@ -14,7 +14,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 
 export const Header = () => {
   const pages = ['Profile', 'Friends', 'Messages'];
-  const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+  const settings = ['Logout'];
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {

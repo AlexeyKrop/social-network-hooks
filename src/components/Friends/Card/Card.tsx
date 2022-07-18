@@ -38,7 +38,6 @@ export const ActionAreaCard = React.memo((props: CardType) => {
         <Button onClick={onClickHandler} size="small" color="primary">
           {props.user.followed ? 'unfollow' : 'follow'}
         </Button>
-
       </CardActions>
     </Card>
   );

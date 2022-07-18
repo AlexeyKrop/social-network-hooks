@@ -6,6 +6,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Profile} from "./components/Profile/Profile";
 import {Friends} from "./components/Friends/Friends";
 import {Dialogs} from "./components/Dialogs/Dialogs";
+import {Login} from "./components/Login/Login";
 
 
 export const App = React.memo(() => {
@@ -21,7 +22,7 @@ export const App = React.memo(() => {
             <Route path='/profile/:id' element={<Profile/>}/>
             <Route path="/friends/" element={<Friends/>}/>
             <Route path="/dialogs/" element={<Dialogs/>}/>
-
+            <Route path="/login/" element={<Login/>}/>
           </Routes>
         </main>
       </div>
