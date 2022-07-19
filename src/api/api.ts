@@ -46,7 +46,11 @@ export const profileAPI = {
   }
 
 }
-
+export const authMe = {
+  me(){
+    return instance.get('auth/me')
+  }
+}
 //TYPE
 export type UserType = {
   name: string,
