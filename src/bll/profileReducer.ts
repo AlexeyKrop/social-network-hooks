@@ -1,6 +1,6 @@
 import {profileAPI, ProfileUserType, userAPI} from "../api/api";
 import {Dispatch} from "redux";
-import {setAppLoadingAC} from "./state/appReducer";
+import {setAppLoadingAC} from "./appReducer";
 
 const initialState = {
   profile: {} as ProfileUserType,

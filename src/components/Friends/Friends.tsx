@@ -4,9 +4,10 @@ import s from './Friends.module.css'
 import {ActionAreaCard} from "./Card/Card";
 import {updateStatusTC} from "../../bll/profileReducer";
 import {getUsersTC, setCurrentPageAC, setFetchingPageAC, setFollowTC, setUnFollowTC} from "../../bll/usersReducer";
+import {Navigate} from "react-router-dom";
 
 
-export const Friends = React.memo(() => {
+export const Friends = () => {
   const dispatch = useAppDispatch()
   const onChangeStatusValue = useCallback((inputValue: string) => {
     dispatch(updateStatusTC(inputValue))
@@ -14,7 +15,8 @@ export const Friends = React.memo(() => {
   const users = useAppSelector(state => state.users.users)
   const fetching = useAppSelector(state => state.users.fetching)
   const page = useAppSelector(state => state.users.page)
-
+  const isAuth = useAppSelector(state => state.auth.isAuth)
+  console.log(isAuth)
   useEffect(() => {
     if (fetching) {
       dispatch(getUsersTC(page, 10))
@@ -41,6 +43,9 @@ export const Friends = React.memo(() => {
     }
 
   }
+  if (!isAuth) {
+    return <Navigate to ="/login"/>
+  }
   return (
     <>
       <div className={s.wrapper}>
@@ -53,4 +58,4 @@ export const Friends = React.memo(() => {
       </div>
     </>
   )
-})
+}

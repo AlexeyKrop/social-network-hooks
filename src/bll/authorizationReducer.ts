@@ -1,5 +1,5 @@
 import {Dispatch} from "redux";
-import {authMe} from "../../api/api";
+import {authMe} from "../api/api";
 
 const initialState = {
   id: null,
@@ -38,6 +38,11 @@ export const authMeTC = () => {
 
 
 //Type
-type InitialStateType = typeof initialState
+type InitialStateType = {
+  id: null | number,
+  email: null | string,
+  password: null | string,
+  isAuth: boolean
+}
 type AuthATypes = SetProfileDataAT
 type SetProfileDataAT = ReturnType<typeof setProfileDataAC>

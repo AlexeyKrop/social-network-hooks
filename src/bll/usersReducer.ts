@@ -1,6 +1,6 @@
 import {userAPI, UserType} from "../api/api";
 import {Dispatch} from "redux";
-import {setAppLoadingAC} from "./state/appReducer";
+import {setAppLoadingAC} from "./appReducer";
 
 const initialState = {
   users: [] as Array<UserType>,
