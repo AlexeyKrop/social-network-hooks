@@ -4,11 +4,12 @@ import {authMe} from "../api/api";
 const initialState = {
   id: null,
   email: null,
-  password: null,
+  login: null,
   isAuth: false
 }
 
 export const authReducer = (state: InitialStateType = initialState, action: AuthATypes) => {
+  console.log(state)
   switch (action.type) {
     case "AUTH/SET-PROFILE-DATA":
       return {
@@ -31,17 +32,25 @@ export const authMeTC = () => {
   return (dispatch: Dispatch) => {
     authMe.me()
       .then(res => {
+        console.log(res.data.data)
         let {id, email, login} = res.data.data
         dispatch(setProfileDataAC(id, email, login, true))})
   }
 }
-
+export const loginTC = (email: string, password: string) => {
+  return (dispatch: any) => {
+    authMe.login(email, password)
+      .then(res => {
+        dispatch(authMeTC())
+      })
+  }
+}
 
 //Type
 type InitialStateType = {
   id: null | number,
   email: null | string,
-  password: null | string,
+  login: null | string,
   isAuth: boolean
 }
 type AuthATypes = SetProfileDataAT
