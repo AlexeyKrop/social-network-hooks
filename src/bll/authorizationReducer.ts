@@ -32,7 +32,6 @@ export const authMeTC = () => {
   return (dispatch: Dispatch) => {
     authMe.me()
       .then(res => {
-        console.log(res.data.data)
         let {id, email, login} = res.data.data
         dispatch(setProfileDataAC(id, email, login, true))})
   }

@@ -16,7 +16,6 @@ export const Friends = () => {
   const fetching = useAppSelector(state => state.users.fetching)
   const page = useAppSelector(state => state.users.page)
   const isAuth = useAppSelector(state => state.auth.isAuth)
-  console.log(isAuth)
   useEffect(() => {
     if (fetching) {
       dispatch(getUsersTC(page, 10))
@@ -43,8 +42,8 @@ export const Friends = () => {
     }
 
   }
-  if (!isAuth) {
-    return <Navigate to ="/login"/>
+  if (isAuth) {
+    return <Navigate to ="/profile"/>
   }
   return (
     <>

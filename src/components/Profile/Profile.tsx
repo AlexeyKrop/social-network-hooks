@@ -6,6 +6,7 @@ import {useAppDispatch, useAppSelector} from "../../bll/state/hooks";
 import {EditableSpan} from "../EditableSpan/EditableSpan";
 import {MyPost} from "./My post/MyPost";
 import Box from "@mui/material/Box/Box";
+import {authMeTC} from "../../bll/authorizationReducer";
 
 
 export const Profile = React.memo(() => {
