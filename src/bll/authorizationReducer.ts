@@ -9,7 +9,6 @@ const initialState = {
 }
 
 export const authReducer = (state: InitialStateType = initialState, action: AuthATypes) => {
-  console.log(state)
   switch (action.type) {
     case "AUTH/SET-PROFILE-DATA":
       return {

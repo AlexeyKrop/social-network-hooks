@@ -4,10 +4,12 @@ import {useAppSelector} from "../../bll/state/hooks";
 
 export const Dialogs = () => {
   const isAuth = useAppSelector(state => state.auth.isAuth)
-  if (!isAuth) {
-    return <Navigate to ="/login"/>
-  }
-  return(
-    <div>'Dialogs page'</div>
+
+
+  return (
+    <>
+      {isAuth && <Navigate to="/login"/>}
+      <div>'Dialogs page'</div>
+    </>
   )
 }

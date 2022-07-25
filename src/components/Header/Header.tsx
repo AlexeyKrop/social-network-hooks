@@ -15,7 +15,6 @@ import {useAppSelector} from "../../bll/state/hooks";
 
 export const Header = () => {
   const isAuth = useAppSelector(state => state.auth.isAuth)
-  console.log(isAuth)
   const pages = ['Profile', 'Friends', 'Messages'];
   const settings = ['Logout'];
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
