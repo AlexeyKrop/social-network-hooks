@@ -42,7 +42,6 @@ export const Friends = () => {
     }
 
   }
-  console.log(isAuth)
   if (!isAuth) {
     return <Navigate to ="/login"/>
   }
